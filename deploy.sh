@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-IMAGE_NAME="chart_app"
+IMAGE_NAME="accessibility_graph-web"
 DOCKERHUB_USERNAME="evanvnaderi"
 TAG="latest"
 
