@@ -2,12 +2,12 @@
 
 # Variables
 IMAGE_NAME="chart_app"
-DOCKERHUB_USERNAME="your_dockerhub_username"
+DOCKERHUB_USERNAME="evanvnaderi"
 TAG="latest"
 
 git add .
 git commit -m "$1"
-git push origin main  # or your current branch
+git push origin master  # or your current branch
 
 docker-compose build
 
