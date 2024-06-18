@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload CSV or Excel File</title>
+</head>
+<body>
+    <h1>Upload CSV or Excel File</h1>
+    <form action="/uploader" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        
+        <label for="chart-type">Select Chart Type:</label>
+        <select name="chart_type" id="chart-type">
+            <option value="d3-lines">Line Chart</option>
+            <option value="d3-bars-stacked">Bar Chart</option>
+            <option value="d3-bars">Stacked Bar Chart</option>
+            <option value="d3-pies">Pie Chart</option>
+            <!-- Add other chart types as needed -->
+        </select>
+        
+        <label for="chart-title">Chart Title:</label>
+        <input type="text" name="chart_title" id="chart-title" placeholder="Enter chart title">
+        
+        <input type="submit" value="Upload">
+    </form>
+
+    {% if chart_id %}
+        <div>
+            <iframe title="Generated Chart" aria-label="Chart" id="datawrapper-chart-{{ chart_id }}" src="https://datawrapper.dwcdn.net/{{ chart_id }}/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="200"></iframe>
+            <script type="text/javascript">
+                window.addEventListener('message', function(event) {
+                    if (typeof event.data['datawrapper-height'] !== 'undefined') {
+                        var iframes = document.querySelectorAll('iframe');
+                        for (var chartId in event.data['datawrapper-height']) {
+                            for (var i = 0; i < iframes.length; i++) {
+                                if (iframes[i].contentWindow === event.source) {
+                                    var iframe = iframes[i];
+                                    iframe.style.height = event.data['datawrapper-height'][chartId] + 'px';
+                                }
+                            }
+                        }
+                    }
+                });
+            </script>
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
